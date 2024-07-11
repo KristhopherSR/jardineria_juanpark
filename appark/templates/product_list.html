@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos - Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_list/product_list.css' %}">
+    <script src="{% static 'product_list/product_list.js' %}" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Volver a Inicio</a>
+        <a href="{% url 'cart' %}">Carrito de Compras</a>
+    </nav>
+    <main>
+        <h1>Listado de Productos</h1>
+        <div class="productos">
+            {% for producto in productos %}
+                <div class="producto">
+                    <h2>{{ producto.nombre }}</h2>
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                    <p>{{ producto.descripcion }}</p>
+                    <p>${{ producto.precio|floatformat:0 }}</p>
+                    <button onclick="window.location.href='{% url 'edit_product' producto.id %}'">Modificar</button>
+                    <form action="{% url 'delete_product' producto.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Eliminar</button>
+                    </form>
+                    <button onclick="window.location.href='{% url 'add_to_cart' producto.id %}'">Agregar al Carrito</button> 
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

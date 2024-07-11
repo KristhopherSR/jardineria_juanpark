@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/home.css' %}">
+    <script src="{% static 'home/home.js' %}" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <ul id="nav-menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'contact' %}">Contacto</a></li>
+            <li><a href="{% url 'product_list' %}">Listado de Productos</a></li>
+            <li><a href="{% url 'add_product' %}">Agregar Producto</a></li>
+            <li><a href="{% url 'cart' %}">Carrito de Compras</a></li>
+            <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Productos de Jardinería</h1>
+        <div class="productos">
+            {% for producto in productos %}
+                <div class="producto">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                    <h2>{{ producto.nombre }}</h2>
+                    <p>{{ producto.descripcion }}</p>
+                    <p>${{ producto.precio }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <div class="footer-section">
+            <h3>Nosotros</h3>
+            <p>En Jardineria Juanpark, nos dedicamos a ofrecer productos de calidad para tu jardín. Nuestro equipo de expertos está siempre listo para ayudarte a crear el jardín de tus sueños.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p>Cualquier duda, mande un mensaje a este número</p>
+            <p>+56 9 9856 8718</p>
+        </div>
+        <div class="footer-section">
+            <h3>Consejos de Jardinería</h3>
+            <p>Visita nuestro blog para obtener consejos y trucos sobre cómo mantener tu jardín saludable y hermoso durante todo el año.</p>
+        </div>
+    </footer>
+</body>
+</html>

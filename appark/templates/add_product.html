@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto - Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'add_product/add_product.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'product_list' %}">Listado de Productos</a>
+    </nav>
+    <main>
+        <h1>Agregar Producto</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+            
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" required>
+            
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*">
+            
+            <button type="submit">Agregar Producto</button>
+        </form>
+    </main>
+    <script src="{% static 'add_product/add_product.js' %}"></script>
+</body>
+</html>

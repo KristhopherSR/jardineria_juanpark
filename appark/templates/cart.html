@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cart/cart.css' %}">
+    <script src="{% static 'cart/cart.js' %}" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Volver a Inicio</a>
+    </nav>
+    <main>
+        <h1>Carrito de Compras</h1>
+        <div class="productos">
+            {% for producto in productos %}
+                <div class="producto">
+                    <h2>{{ producto.nombre }}</h2>
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                    <p>{{ producto.descripcion }}</p>
+                    <p>${{ producto.precio|floatformat:0 }}</p>
+                    <button onclick="window.location.href='{% url 'remove_from_cart' producto.id %}'">Quitar</button>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="total">
+            <p>Total: ${{ total }}</p>
+        </div>
+        <button onclick="window.location.href='{% url 'product_list' %}'">Continuar Comprando</button>
+        <button onclick="alert('Error: No hay conexión')">Pagar</button>
+    </main>
+</body>
+</html>

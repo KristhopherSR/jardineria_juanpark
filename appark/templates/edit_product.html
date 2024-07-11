@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto - Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edit_product/edit_product.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'product_list' %}">Volver a Listado de Productos</a>
+    </nav>
+    <main>
+        <h1>Editar Producto</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ form.nombre.value }}" required>
+            
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required>{{ form.descripcion.value }}</textarea>
+            
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" value="{{ form.precio.value }}" required>
+            
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*">
+            {% if form.imagen.value %}
+                <p>Imagen actual: <img src="{{ form.imagen.value.url }}" alt="{{ form.nombre.value }}" style="max-width: 100px;"></p>
+            {% endif %}
+            
+            <button type="submit">Aplicar Cambios</button>
+            <button type="button" onclick="window.location.href='{% url 'product_list' %}'">Cancelar</button>
+        </form>
+    </main>
+    <script src="{% static 'edit_product/edit_product.js' %}"></script>
+</body>
+</html>

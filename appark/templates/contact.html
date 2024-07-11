@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Jardineria Juanpark</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'contact/contact.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Volver a Inicio</a>
+    </nav>
+    <main>
+        <h1>Contacto</h1>
+        <div class="social-media">
+            <div class="social-item">
+                <img src="{% static 'images/facebook.png' %}" alt="Facebook">
+                <div class="social-link">Facebook</div>
+                <div class="page-name">Jardineria JuanPark</div>
+            </div>
+            <div class="social-item">
+                <img src="{% static 'images/twitter.png' %}" alt="Twitter">
+                <div class="social-link">Twitter</div>
+                <div class="page-name">@Jardineria_JuanPark</div>
+                <div class="page-username">Jardineria JuanPark</div>
+            </div>
+            <div class="social-item">
+                <img src="{% static 'images/instagram.png' %}" alt="Instagram">
+                <div class="social-link">Instagram</div>
+                <div class="page-name">@Jardineria_JuanPark</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
